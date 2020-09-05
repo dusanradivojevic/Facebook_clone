@@ -20,6 +20,15 @@ function Login() {
       })
       .catch((error) => alert(error.message));
   };
+  const signAsGuest = () => {
+    dispatch({
+      type: actionTypes.SET_USER,
+      user: {
+        displayName: "Guest" + Math.floor(Math.random() * 10000),
+        photoURL: "",
+      },
+    });
+  };
 
   return (
     <div className="login">
@@ -33,8 +42,11 @@ function Login() {
           alt=""
         />
       </div>
-      <Button type="submit" onClick={signIn}>
+      <Button type="submit" onClick={signIn} className="signInBtn">
         Sign in
+      </Button>
+      <Button type="submit" onClick={signAsGuest} className="guestBtn">
+        Continue as guest
       </Button>
     </div>
   );
