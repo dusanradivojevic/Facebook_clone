@@ -1,6 +1,6 @@
 .post {
   width: 100%;
-  margin-top: 15px;
+  margin-top: 1rem;
   border-radius: 15px;
   background-color: white;
   box-shadow: 0px 5px 7px -7px black;
@@ -10,11 +10,11 @@
   display: flex;
   position: relative;
   align-items: center;
-  padding: 15px;
+  padding: 0.9em;
 }
 
 .post__avatar {
-  margin-right: 10px;
+  margin-right: 0.7em;
 }
 
 .post__image > img {
@@ -27,15 +27,15 @@
 }
 
 .post__bottom {
-  margin: 10px 0;
-  padding: 0 30px;
+  margin: 0.8em 0;
+  padding: 0 1.5em;
 }
 
 .post__options {
   display: flex;
   justify-content: space-evenly;
   font-size: medium;
-  padding: 15px 25px 15px 15px;
+  padding: 0.9em 1.2em 0.9em 0.9em;
   border-top: 1px solid lightgray;
   color: gray;
   cursor: pointer;
@@ -45,15 +45,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 0.3em;
   flex: 1;
 }
 
 .post__option > p {
-  margin-left: 10px;
+  margin-left: 0.6em;
 }
 
 .post__option:hover {
   background-color: #eff2f5;
   border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .post {
+    width: 75%;
+  }
+}
+
+@media (max-width: 400px) {
+  .post {
+    width: 100vw;
+  }
 }
