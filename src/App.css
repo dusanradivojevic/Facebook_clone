@@ -5,20 +5,10 @@
 
 .app {
   background-color: rgb(243, 240, 240);
-  /* height: 100vh; */
+  /* background-color: red; */
 }
 
 .app__body {
   display: flex;
   justify-content: space-between;
-}
-
-.app__body::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.app__body {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 }

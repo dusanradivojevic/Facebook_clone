@@ -68,7 +68,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .messageSender {
     display: flex;
     margin-top: 1em;

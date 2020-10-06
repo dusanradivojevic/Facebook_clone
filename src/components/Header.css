@@ -1,5 +1,5 @@
 .header {
-  padding: 15px 20px;
+  padding: 15px 0;
   display: flex;
   justify-content: space-between;
   position: sticky;
@@ -26,27 +26,29 @@
   display: flex;
   align-items: center;
   background-color: whitesmoke;
-  padding: 10px;
-  margin-left: 10px;
-  border-radius: 333px;
+  padding: 1vw;
+  margin-left: 1vw;
+  border-radius: 100px;
 }
 
 .header__input > input {
   border: none;
   background-color: transparent;
   outline: none;
+  width: 10vw;
+  font-size: 16px;
 }
 
 .header__center {
   display: flex;
   flex: 1; /* taking as much space as it can */
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .header__option {
   display: flex;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 2%;
   cursor: pointer;
 }
 
@@ -91,6 +93,9 @@
     font-size: 26px;
   }
 
+  .header__input > input {
+    font-size: 1.5vw;
+  }
   .header__left > img {
     height: 1.8rem;
   }
@@ -124,6 +129,9 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .header {
+    position: -webkit-sticky;
+  }
   .header__center {
     display: none;
   }
