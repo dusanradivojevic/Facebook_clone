@@ -11,7 +11,7 @@ Material-UI and Flexbox are used for designing user interface.<br/>
 IFrame page plugin is used for embedding live posts from a Facebook page to the right sidebar.
 
 Firebase platform is used for hosting the app and for providing Google authentication. <br/>
-Database for saving posts is document based and located also at Firebase platform.
+Database is document based and located also at Firebase platform.
 
 IDE for development was Visual Studio Code.
 
