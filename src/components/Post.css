@@ -58,6 +58,14 @@
   border-radius: 10px;
 }
 
+.post__option__numberLikes {
+  margin-right: 0.6em;
+}
+
+.post__option__liked {
+  color: #2e81f4;
+}
+
 @media (max-width: 768px) {
   .post {
     width: 75%;

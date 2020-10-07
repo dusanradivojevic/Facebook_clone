@@ -2,24 +2,35 @@ import React from "react";
 import "./Login.css";
 import { Button } from "@material-ui/core";
 import { auth, provider } from "../firebase";
+import db from "../firebase";
 import { useStateValue } from "../StateProvider";
 import { actionTypes } from "../reducer";
 
 function Login() {
   const [state, dispatch] = useStateValue();
+
+  const addUserToDb = (email) => {
+    // console.log(email);
+    db.collection("users").doc(email).set({
+      email: email,
+    });
+  };
+
   const signIn = () => {
     auth
       .signInWithPopup(provider)
       .then((result) => {
         // calling the reducer to update the state
+        addUserToDb(result.user.email);
         dispatch({
           type: actionTypes.SET_USER,
           user: result.user,
         });
-        console.log(result.user);
+        // console.log(result.user);
       })
       .catch((error) => alert(error.message));
   };
+
   const signAsGuest = () => {
     dispatch({
       type: actionTypes.SET_USER,

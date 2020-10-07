@@ -13,8 +13,8 @@ function Widgets() {
           overflow: "hidden",
         }}
         scrolling="no"
-        frameborder="0"
-        allowTransparency="true"
+        frameBorder="0"
+        allowtransparency="true"
         allow="encrypted-media"
       ></iframe>
     </div>

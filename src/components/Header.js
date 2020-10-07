@@ -1,9 +1,8 @@
 import React from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
-import FlagIcon from "@material-ui/icons/Flag";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
-import StorefrontIcon from "@material-ui/icons/Storefront";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import "./Header.css";
 import { Avatar, IconButton } from "@material-ui/core";
@@ -37,16 +36,13 @@ function Header() {
           <HomeIcon fontSize="large" />
         </div>
         <div className="header__option">
-          <FlagIcon fontSize="large" />
-        </div>
-        <div className="header__option">
           <SubscriptionsIcon fontSize="large" />
         </div>
         <div className="header__option">
-          <StorefrontIcon fontSize="large" />
+          <SupervisedUserCircleIcon fontSize="large" />
         </div>
         <div className="header__option">
-          <SupervisedUserCircleIcon fontSize="large" />
+          <DashboardIcon fontSize="large" />
         </div>
       </div>
 
@@ -59,10 +55,10 @@ function Header() {
           <AddIcon />
         </IconButton>
         <IconButton>
-          <NotificationsActiveIcon />
+          <ForumIcon />
         </IconButton>
         <IconButton>
-          <ForumIcon />
+          <NotificationsActiveIcon />
         </IconButton>
         <IconButton>
           <ExpandMoreIcon />
