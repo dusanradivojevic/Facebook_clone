@@ -35,7 +35,7 @@
   display: flex;
   justify-content: space-evenly;
   font-size: medium;
-  padding: 0.9em 1.2em 0.9em 0.9em;
+  padding: 0.5em 1.2em 0.5em 0.9em;
   border-top: 1px solid lightgray;
   color: gray;
   cursor: pointer;
@@ -58,7 +58,7 @@
   border-radius: 10px;
 }
 
-.post__option__numberLikes {
+.post__option__number {
   margin-right: 0.6em;
 }
 

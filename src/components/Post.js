@@ -8,23 +8,37 @@ import { useStateValue } from "../StateProvider";
 import db from "../firebase";
 import Alert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
+import Comment from "./Comment";
+import CommentSender from "./CommentSender";
 
 function Post({ id, profilePic, image, username, timestamp, message, likes }) {
   const [{ user }, dispatch] = useStateValue();
   const [liked, setLiked] = useState(false);
   const [guestAlert, setGuestAlert] = useState(false);
-  const likeDiv = useRef(null);
+  const likeDivRef = useRef(null);
+  const [comments, setComments] = useState([]);
+  const [openComments, setOpenComments] = useState(false);
 
   useEffect(() => {
     likes?.find((item) => item === user.email)
       ? setLiked(true)
       : setLiked(false);
+
+    db.collection("posts")
+      .doc(id)
+      .collection("comments")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setComments(
+          snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+        )
+      );
   }, []);
 
   useEffect(() => {
     liked
-      ? likeDiv.current.classList.add("post__option__liked")
-      : likeDiv.current.classList.remove("post__option__liked");
+      ? likeDivRef.current.classList.add("post__option__liked")
+      : likeDivRef.current.classList.remove("post__option__liked");
   }, [liked]);
 
   const clickLike = () => {
@@ -42,12 +56,9 @@ function Post({ id, profilePic, image, username, timestamp, message, likes }) {
         usersArray = doc.data().likedBy;
         if (liked) {
           // Remove like from the post
-          console.log("before remove", usersArray, " email: ", user.email);
           usersArray = usersArray.filter((item) => item !== user.email);
-          console.log("after remove", usersArray);
         } else {
           // Add like to the post
-          console.log("email pushed: ", user.email);
           if (!usersArray?.find((item) => item === user.email))
             usersArray.push(user.email);
         }
@@ -55,8 +66,6 @@ function Post({ id, profilePic, image, username, timestamp, message, likes }) {
         return usersArray;
       })
       .then((usersArray) => {
-        console.log("stiglo u update", usersArray);
-
         post.update({
           likedBy: usersArray,
         });
@@ -71,6 +80,10 @@ function Post({ id, profilePic, image, username, timestamp, message, likes }) {
     }
 
     setGuestAlert(false);
+  };
+
+  const handleComments = () => {
+    setOpenComments(!openComments);
   };
 
   return (
@@ -92,16 +105,21 @@ function Post({ id, profilePic, image, username, timestamp, message, likes }) {
       </div>
 
       <div className="post__options">
-        <div className="post__option" onClick={clickLike} ref={likeDiv}>
+        <div className="post__option" onClick={clickLike} ref={likeDivRef}>
           {likes?.length ? (
-            <p className="post__option__numberLikes">({likes?.length})</p>
+            <p className="post__option__number">({likes?.length})</p>
           ) : (
             <p></p>
           )}
           <ThumbUpIcon />
           <p>Like</p>
         </div>
-        <div className="post__option">
+        <div className="post__option" onClick={handleComments}>
+          {comments?.length ? (
+            <p className="post__option__number">({comments?.length})</p>
+          ) : (
+            <p></p>
+          )}
           <ChatBubbleIcon />
           <p>Comment</p>
         </div>
@@ -110,6 +128,23 @@ function Post({ id, profilePic, image, username, timestamp, message, likes }) {
           <p>Share</p>
         </div>
       </div>
+
+      {openComments ? (
+        <div>
+          <CommentSender postID={id} />
+          {comments.map((comm) => (
+            <Comment
+              key={comm.id}
+              imageURL={comm.data.imageURL}
+              message={comm.data.message}
+              timestamp={comm.data.timestamp}
+              username={comm.data.username}
+            />
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
 
       <Snackbar
         anchorOrigin={{
