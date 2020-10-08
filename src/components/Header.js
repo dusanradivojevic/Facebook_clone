@@ -11,10 +11,21 @@ import ForumIcon from "@material-ui/icons/Forum";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useStateValue } from "../StateProvider";
+import { auth } from "../firebase";
+import { actionTypes } from "../reducer";
 
 function Header() {
   const [{ user }, dispatch] = useStateValue();
 
+  const handleLogOut = () => {
+    if (user) {
+      auth.signOut();
+      dispatch({
+        type: actionTypes.SET_USER,
+        user: null,
+      });
+    }
+  };
   return (
     <div className="header">
       <div className="header__left">
@@ -49,7 +60,10 @@ function Header() {
       <div className="header__right">
         <div className="header__info">
           <Avatar src={user.photoURL} />
-          <h4>{user.displayName}</h4>
+          <div className="header__info__text" onClick={handleLogOut}>
+            <h4>{user.displayName}</h4>
+            <h6>(Log out)</h6>
+          </div>
         </div>
         <IconButton>
           <AddIcon />
