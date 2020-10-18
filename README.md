@@ -1,5 +1,5 @@
 # Facebook clone
-Simple Facebook clone application made with React.
+Facebook clone application made with React.
 
 ## Description
 This web application represents front page of Facebook with some base functionalities, such as reading and writting posts and comments, adding likes and Google authentication login.
